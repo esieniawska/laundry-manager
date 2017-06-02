@@ -40,7 +40,7 @@ class Product extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
+            'name' => 'Nazwa',
         ];
     }
 
@@ -50,5 +50,12 @@ class Product extends \yii\db\ActiveRecord
     public function getOrderProducts()
     {
         return $this->hasMany(OrderProduct::className(), ['product_id' => 'id']);
+    }
+
+
+    public function getOrders()
+    {
+        return $this->hasMany(Order::className(), ['id' => 'order_id'])
+            ->viaTable('order_product',['product_id'=>'id']);
     }
 }
