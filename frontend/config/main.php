@@ -10,6 +10,14 @@ return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'modules' => [
+        'gridview' =>  [
+            'class' => '\kartik\grid\Module'
+        ],
+        'courier' => [
+            'class' => 'frontend\module\Courier',
+        ],
+    ],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'request' => [
@@ -41,6 +49,8 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                ['pattern' => 'signup', 'route' => 'site/signup'],
+                ['pattern' => 'login', 'route' => 'site/login'],
             ],
         ],
 
