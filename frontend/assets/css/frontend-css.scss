@@ -1,0 +1,76 @@
+$phone: "only screen and (max-width: 480px)";
+$tablet: "only screen and (max-width: 768px)";
+$desktop: "only screen and (max-width: 960px)";
+$large: "only screen and (max-width: 1200px)";
+
+$main-color: #2271c1;
+$hover-color: #4da3ff;
+
+.btn-site {
+  background-color: lighten($main-color, 5%);
+  color: white;
+  font-size: 20px;
+  @media #{$tablet} {
+    font-size: 18px;
+  }
+  @media #{$phone} {
+    font-size: 15px;
+    padding-left: 0;
+    padding-right: 10px;
+
+  }
+
+  border-radius: 0;
+  margin-bottom: 20px;
+  &:hover {
+    background-color: transparent;
+    border-bottom: 1px solid $main-color;
+  }
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+.btn-active {
+  background-color: transparent;
+  color: $main-color;
+  font-size: 20px;
+  border-bottom: 1px solid $hover-color;
+  @media #{$tablet} {
+    font-size: 18px;
+  }
+  @media #{$phone} {
+    font-size: 15px;
+    padding-left: 0;
+    padding-right: 10px;
+  }
+
+  border-radius: 0;
+  margin-bottom: 20px;
+  &:hover {
+    border-bottom: 1px solid $main-color;
+  }
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+.title {
+  text-align: center;
+  a {
+    color: black;
+  }
+}
+
+.waiting-at-customer-list {
+  &.disactive {
+    display: none;
+  }
+}
+
+.waiting-for-return-list {
+  display: none;
+  &.active {
+    display: block;
+  }
+}
