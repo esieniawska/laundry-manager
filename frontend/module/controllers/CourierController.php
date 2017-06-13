@@ -11,7 +11,7 @@ use yii\web\Controller;
 /**
  * Default controller for the `module` module
  */
-class DefaultController extends Controller {
+class CourierController extends Controller {
     /**
      * Renders the index view for the module
      * @return string
@@ -23,7 +23,7 @@ class DefaultController extends Controller {
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'view', 'travel-to-laundry', 'travel-to-customer'],
+                        'actions' => ['index', 'order', 'travel-to-laundry', 'travel-to-customer'],
                         'allow' => true,
                         'roles' => ['admin', 'courier'],
                     ],
@@ -39,6 +39,8 @@ class DefaultController extends Controller {
     }
 
     public function actionIndex() {
+        $this->layout = 'main-courier';
+
         $waitingQuery = Order::find()
             ->waitingAtCustomer();
 
@@ -86,6 +88,38 @@ class DefaultController extends Controller {
             'travelToCustomerDataProvider'=>$travelToCustomerDataProvider,
         ]);
     }
+
+    public function actionOrder(){
+        $this->layout = 'main-courier';
+
+        $waitingQuery = Order::find()
+            ->waitingAtCustomer();
+
+        $waitingAtCustomerDataProvider = new ActiveDataProvider([
+            'query' => $waitingQuery,
+            'pagination' => [
+                'pageSize' => 5,
+            ],
+        ]);
+
+        $waitingForReturnToCustomerQuery = Order::find()
+            ->waitingForReturnToCustomer();
+
+
+        $waitingForReturnToCustomerDataProvider = new ActiveDataProvider([
+            'query' => $waitingForReturnToCustomerQuery,
+            'pagination' => [
+                'pageSize' => 5,
+            ],
+        ]);
+
+
+        return $this->render('order',[
+                'waitingAtCustomerDataProvider' => $waitingAtCustomerDataProvider,
+                'waitingForReturnToCustomerDataProvider' => $waitingForReturnToCustomerDataProvider,
+
+        ]);
+}
     public function actionTravelToLaundry($id){
         Order::setTravelToLaundryStatus($id);
         return $this->actionIndex();

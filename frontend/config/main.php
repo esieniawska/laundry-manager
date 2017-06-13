@@ -51,6 +51,10 @@ return [
             'rules' => [
                 ['pattern' => 'signup', 'route' => 'site/signup'],
                 ['pattern' => 'login', 'route' => 'site/login'],
+                ['pattern' => 'courier', 'route' => 'courier/courier/index'],
+                ['pattern' => 'courier/order', 'route' => 'courier/courier/order'],
+
+
             ],
         ],
 
