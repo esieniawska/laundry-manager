@@ -118,3 +118,25 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+.label-waiting-customer {
+    background-color: #d96d41;
+}
+.label-travel-laundry {
+    background-color: #b55bd9;
+}
+.label-waiting-wash {
+    background-color: #6ad3d9;
+}
+.label-wash {
+    background-color: #3395d9;
+}
+
+.label-waiting-return {
+    background-color: #78d979;
+}
+.label-travel-customer {
+    background-color: #d9a24b;
+}
+.label-received {
+    background-color: #d8d972;
+}
