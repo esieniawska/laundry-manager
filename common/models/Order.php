@@ -15,8 +15,10 @@ use yii\helpers\ArrayHelper;
  *
  * @property integer $id
  * @property integer $user_id
+ * @property integer $updated_by
  * @property string $created_at
  * @property string $updated_at
+ *
  * @property string $address
  * @property integer $status
  *
@@ -73,7 +75,7 @@ class Order extends \yii\db\ActiveRecord {
             [
                 'class' => BlameableBehavior::className(),
                 'createdByAttribute' => 'user_id',
-                'updatedByAttribute' => 'user_id',
+                'updatedByAttribute' => 'updated_by',
             ],
         ];
     }
@@ -84,10 +86,12 @@ class Order extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['address'], 'required'],
-            [['user_id'], 'integer'],
+            [['user_id', 'updated_by'], 'integer'],
             [['created_at', 'updated_at', 'status', 'products'], 'safe'],
             [['address'], 'string', 'max' => 255],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
+            [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['updated_by' => 'id']],
+
         ];
     }
 
@@ -100,6 +104,7 @@ class Order extends \yii\db\ActiveRecord {
             'id' => 'ID',
             'user_id' => 'Użytkownik',
             'created_at' => 'Utworzono',
+            'updated_by'=>'Aktualizowane przez',
             'updated_at' => 'Aktualizowano',
             'address' => 'Adres',
         ];
@@ -112,6 +117,12 @@ class Order extends \yii\db\ActiveRecord {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUpdatedBy(){
+        return $this->hasOne(User::className(),['id'=>'updated_by']);
+    }
     /**
      * @return \yii\db\ActiveQuery
      */
