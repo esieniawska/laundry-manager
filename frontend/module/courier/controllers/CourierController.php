@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\module\controllers;
+namespace frontend\module\courier\controllers;
 
 use common\models\Order;
 use yii\data\ActiveDataProvider;
@@ -17,26 +17,6 @@ class CourierController extends Controller {
      * @return string
      */
 
-    public function behaviors() {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'actions' => ['index', 'order', 'travel-to-laundry', 'travel-to-customer'],
-                        'allow' => true,
-                        'roles' => ['admin', 'courier'],
-                    ],
-                ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
 
     public function actionIndex() {
         $this->layout = 'main-courier';
@@ -122,11 +102,11 @@ class CourierController extends Controller {
 }
     public function actionTravelToLaundry($id){
         Order::setTravelToLaundryStatus($id);
-        return $this->actionIndex();
+        return $this->actionOrder();
     }
 
     public function actionTravelToCustomer($id){
         Order::setTravelToCustomerStatus($id);
-        return $this->actionIndex();
+        return $this->actionOrder();
     }
 }
