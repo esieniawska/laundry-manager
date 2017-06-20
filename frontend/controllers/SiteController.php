@@ -72,71 +72,8 @@ class SiteController extends Controller {
      */
     public function actionIndex() {
         if (!Yii::$app->user->isGuest) {
-            $user = Yii::$app->user->getId();
-
-            $orderQuery = Order::find()
-                ->forUserId($user)
-                ->orderBy([
-                    'created_at' => SORT_DESC,
-                ]);
-
-            $orderDataProvider = new ActiveDataProvider([
-                'query' => $orderQuery,
-                'pagination' => [
-                    'pageSize' => 10,
-                ],
-            ]);
-
-            $waitingQuery = Order::find()
-                ->forUserId($user)
-                ->waitingAtCustomer();
-            $waitingAtCustomerDataProvider = new ActiveDataProvider([
-                'query' => $waitingQuery,
-            ]);
-
-            $travelToLaundryDataProvider = new ActiveDataProvider();
-            $travelToLaundryDataProvider->query = Order::find()
-                ->forUserId($user)
-                ->travelToLaundry();
-
-            $waitingForWashDataProvider = new ActiveDataProvider();
-            $waitingForWashDataProvider->query = Order::find()
-                ->forUserId($user)
-                ->waitingForWash();
-
-            $washDataProvider = new ActiveDataProvider();
-            $washDataProvider->query = Order::find()
-                ->forUserId($user)
-                ->washing();
-
-            $waitingForReturnToCustomerDataProvider = new ActiveDataProvider();
-            $waitingForReturnToCustomerDataProvider->query = Order::find()
-                ->forUserId($user)
-                ->waitingForReturnToCustomer();
-
-            $travelToCustomerDataProvider = new ActiveDataProvider();
-            $travelToCustomerDataProvider->query = Order::find()
-                ->forUserId($user)
-                ->travelToCustomer();
-
-            $receivingByCustomerDataProvider = new ActiveDataProvider();
-            $receivingByCustomerDataProvider->query = Order::find()
-                ->forUserId($user)
-                ->receivingByCustomer();
-
-
-            return $this->render('index', [
-                'waitingAtCustomerDataProvider' => $waitingAtCustomerDataProvider,
-                'orderDataProvider' => $orderDataProvider,
-                'travelToLaundryDataProvider' => $travelToLaundryDataProvider,
-                'waitingForWashDataProvider' => $waitingForWashDataProvider,
-                'washDataProvider' => $washDataProvider,
-                'waitingForReturnToCustomerDataProvider' => $waitingForReturnToCustomerDataProvider,
-                'travelToCustomerDataProvider' => $travelToCustomerDataProvider,
-                'receivingByCustomerDataProvider' => $receivingByCustomerDataProvider,
-            ]);
+            return $this->render('index');
         } else {
-
             return $this->actionLogin();
         }
     }
@@ -155,6 +92,8 @@ class SiteController extends Controller {
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             if (Yii::$app->authManager->getAssignment('courier', Yii::$app->user->getId())) {
                 return $this->redirect('/courier');
+            } elseif (Yii::$app->authManager->getAssignment('user', Yii::$app->user->getId())){
+                return $this->redirect('/user');
             }
             return $this->goBack();
         } else {

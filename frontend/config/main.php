@@ -15,7 +15,10 @@ return [
             'class' => '\kartik\grid\Module'
         ],
         'courier' => [
-            'class' => 'frontend\module\Courier',
+            'class' => 'frontend\module\courier\Courier',
+        ],
+        'user' => [
+            'class' => 'frontend\module\user\User',
         ],
     ],
     'controllerNamespace' => 'frontend\controllers',
@@ -53,6 +56,8 @@ return [
                 ['pattern' => 'login', 'route' => 'site/login'],
                 ['pattern' => 'courier', 'route' => 'courier/courier/index'],
                 ['pattern' => 'courier/order', 'route' => 'courier/courier/order'],
+                ['pattern' => 'user', 'route' => 'user/user/index'],
+                ['pattern' => 'user/order', 'route' => 'user/order/index'],
 
 
             ],

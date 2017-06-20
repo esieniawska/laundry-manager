@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\controllers;
+namespace frontend\module\user\controllers;
 
 use common\models\OrderForm;
 use common\models\OrderProduct;
@@ -41,6 +41,7 @@ class OrderController extends Controller {
      * @return mixed
      */
     public function actionIndex() {
+        $this->layout = 'main-user';
 
         $user = Yii::$app->user->getId();
 
@@ -63,6 +64,8 @@ class OrderController extends Controller {
      * @return mixed
      */
     public function actionView($id) {
+        $this->layout = 'main-user';
+
         $user = Yii::$app->user->getId();
 
         $query = OrderProduct::find()
@@ -91,7 +94,7 @@ class OrderController extends Controller {
      * @return mixed
      */
     public function actionCreate() {
-
+        $this->layout = 'main-user';
 
         $order = new Order();
 
@@ -161,6 +164,8 @@ class OrderController extends Controller {
      * @return mixed
      */
     public function actionUpdate($id) {
+        $this->layout = 'main-user';
+
         $order = $this->findModel($id);
         $orderProducts = $order->orderProducts;
 
