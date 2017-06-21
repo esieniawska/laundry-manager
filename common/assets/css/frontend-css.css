@@ -1,0 +1,110 @@
+.btn-site {
+  background-color: #267ed7;
+  color: white;
+  font-size: 20px;
+  border-radius: 0;
+  margin-bottom: 20px; }
+  @media only screen and (max-width: 768px) {
+    .btn-site {
+      font-size: 18px; } }
+  @media only screen and (max-width: 480px) {
+    .btn-site {
+      font-size: 15px;
+      padding-left: 0;
+      padding-right: 10px; } }
+  .btn-site:hover {
+    background-color: transparent;
+    border-bottom: 1px solid #2271c1; }
+  .btn-site:focus {
+    box-shadow: none; }
+
+.btn-active {
+  background-color: transparent;
+  color: #2271c1;
+  font-size: 20px;
+  border-bottom: 1px solid #4da3ff;
+  border-radius: 0;
+  margin-bottom: 20px; }
+  @media only screen and (max-width: 768px) {
+    .btn-active {
+      font-size: 18px; } }
+  @media only screen and (max-width: 480px) {
+    .btn-active {
+      font-size: 15px;
+      padding-left: 0;
+      padding-right: 10px; } }
+  .btn-active:hover {
+    border-bottom: 1px solid #2271c1; }
+  .btn-active:focus {
+    box-shadow: none; }
+
+.title {
+  text-align: center; }
+  .title a {
+    color: black; }
+
+.waiting-at-customer-list.disactive {
+  display: none; }
+
+.waiting-for-return-list {
+  display: none; }
+  .waiting-for-return-list.active {
+    display: block; }
+
+.label-waiting-customer {
+  background-color: #d96d41;
+  color: white;
+  border: none;
+  text-align: center; }
+  .label-waiting-customer:hover {
+    background-color: #d98b6c; }
+
+.label-travel-laundry {
+  background-color: #b55bd9;
+  color: white;
+  text-align: center;
+  border: none; }
+  .label-travel-laundry:hover {
+    background-color: #bf82d9; }
+
+.label-waiting-wash {
+  background-color: #5bb0b6;
+  text-align: center;
+  border: none;
+  color: white; }
+  .label-waiting-wash:hover {
+    background-color: #82d9ca; }
+
+.label-wash {
+  background-color: #3395d9;
+  border: none;
+  text-align: center;
+  color: white; }
+  .label-wash:hover {
+    background-color: #34b2d9; }
+
+.label-waiting-return {
+  background-color: #29a064;
+  border: none;
+  text-align: center;
+  color: white; }
+  .label-waiting-return:hover {
+    background-color: #99d979; }
+
+.label-travel-customer {
+  background-color: #d99416;
+  text-align: center;
+  color: white;
+  border: none; }
+  .label-travel-customer:hover {
+    background-color: #d9ad6c; }
+
+.label-received {
+  background-color: #b9ae1f;
+  text-align: center;
+  color: white;
+  border: none; }
+  .label-received:hover {
+    background-color: #d9d998; }
+
+/*# sourceMappingURL=frontend-css.css.map */

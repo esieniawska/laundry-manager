@@ -74,3 +74,79 @@ $hover-color: #4da3ff;
     display: block;
   }
 }
+
+.label-waiting-customer {
+  background-color: #d96d41;
+  color: white;
+  border: none;
+  text-align: center;
+  &:hover{
+    background-color: #d98b6c;
+  }
+}
+
+
+.label-travel-laundry {
+  background-color: #b55bd9;
+  color: white;
+  text-align: center;
+  border: none;
+  &:hover{
+    background-color: #bf82d9;
+  }
+
+}
+
+.label-waiting-wash {
+  background-color: #5bb0b6;
+  text-align: center;
+  border: none;
+  color: white;
+  &:hover{
+    background-color: #82d9ca;
+  }
+}
+
+
+.label-wash {
+  background-color: #3395d9;
+  border: none;
+  text-align: center;
+  color: white;
+  &:hover{
+    background-color: #34b2d9;
+  }
+}
+
+
+.label-waiting-return {
+  background-color: #29a064;
+  border: none;
+  text-align: center;
+  color: white;
+  &:hover{
+    background-color: #99d979;
+  }
+}
+
+
+.label-travel-customer {
+  background-color: #d99416;
+  text-align: center;
+  color: white;
+  border: none;
+  &:hover{
+    background-color: #d9ad6c;
+  }
+
+}
+
+.label-received {
+  background-color: #b9ae1f;
+  text-align: center;
+  color: white;
+  border: none;
+  &:hover{
+    background-color: #d9d998;
+  }
+}

@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\assets;
+namespace common\assets;
 
 use yii\web\AssetBundle;
 
@@ -8,12 +8,12 @@ use yii\web\AssetBundle;
  * Main frontend application asset bundle.
  */
 class AppAsset extends AssetBundle {
-    public $sourcePath = '@frontend/assets';
+    public $sourcePath = '@common/assets';
 
 
     public $css = [
-        'css/site.css',
         'css/font-awesome.css',
+        'css/site.css',
         'css/frontend-css.scss',
     ];
     public $js = [
