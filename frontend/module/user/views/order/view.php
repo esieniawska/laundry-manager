@@ -11,8 +11,7 @@ use yii\widgets\Pjax;
 /* @var $user \common\models\User */
 
 $this->title = 'Zlecenie nr: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Orders', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="order-view">
 

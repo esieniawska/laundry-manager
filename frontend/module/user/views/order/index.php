@@ -8,9 +8,8 @@ use yii\grid\GridView;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Zlecenia';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="order-index" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<div class="order-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -35,18 +34,4 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
     ]); ?>
-</div>
-<div id="app">
-    {{ message }}
-</div>
-
-<div id="app-2">
-  <span v-bind:title="message">
-    Hover your mouse over me for a few seconds
-    to see my dynamically bound title!
-  </span>
-</div>
-
-<div id="app-3">
-    <p v-if="seen">Now you see me</p>
 </div>
