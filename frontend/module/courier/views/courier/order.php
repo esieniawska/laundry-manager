@@ -49,16 +49,19 @@ $this->title = Yii::$app->name;
                 'address',
                 [
                     'attribute' => 'status',
+                    'format' => 'html',
                     'value' => function (Order $model) {
-                        return $model->getStatusLabel();
+
+                        return "<div class=\"" . $model->getStatusCSSClass() . "\">" . $model->getStatusLabel() . "</div>";
                     }
+
                 ],
                 ['class' => 'yii\grid\ActionColumn',
 
                     'template' => '{travel-to-laundry}',
                     'buttons' => [
                         'travel-to-laundry' => function ($url, $model) {
-                            return Html::a(FA::icon('mail-forward').' Zawieź do pralni', ['travel-to-laundry', 'id' => $model->id], ['class' => 'btn btn-default  btn-sm']);
+                            return Html::a(FA::icon('mail-forward').' Zawieź do pralni', ['travel-to-laundry', 'id' => $model->id], ['class' => 'btn btn-default  btn-sm label-travel-laundry']);
                         },
                     ],
                 ],
@@ -89,16 +92,18 @@ $this->title = Yii::$app->name;
                 'address',
                 [
                     'attribute' => 'status',
+                    'format' => 'html',
                     'value' => function (Order $model) {
-                        return $model->getStatusLabel();
+                        return "<div class=\"" . $model->getStatusCSSClass() . "\">" . $model->getStatusLabel() . "</div>";
                     }
+
                 ],
 
                 ['class' => 'yii\grid\ActionColumn',
                     'template' => '{travel-to-customer}',
                     'buttons' => [
                         'travel-to-customer' => function ($url, $model) {
-                            return Html::a(FA::icon('reply-all').' Zawieź do klienta', ['travel-to-customer', 'id' => $model->id], ['class' => 'btn btn-default  btn-sm']);
+                            return Html::a(FA::icon('reply-all').' Zawieź do klienta', ['travel-to-customer', 'id' => $model->id], ['class' => 'btn btn-default  btn-sm label-travel-customer']);
                         },
                     ],
                 ],

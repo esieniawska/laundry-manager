@@ -2,8 +2,6 @@
 
 use common\models\Order;
 use kartik\grid\GridView;
-use rmrevin\yii\fontawesome\FA;
-use yii\helpers\Html;
 use yii\widgets\Pjax;
 
 /* @var  $waitingAtCustomerDataProvider \yii\data\ActiveDataProvider */
@@ -43,9 +41,11 @@ $this->title = Yii::$app->name;
                 'address',
                 [
                     'attribute' => 'status',
+                    'format' => 'html',
                     'value' => function (Order $model) {
-                        return $model->getStatusLabel();
+                        return "<div class=\"" . $model->getStatusCSSClass() . "\">" . $model->getStatusLabel() . "</div>";
                     }
+
                 ],
             ],
         ]); ?>
@@ -70,9 +70,11 @@ $this->title = Yii::$app->name;
                 'address',
                 [
                     'attribute' => 'status',
+                    'format' => 'html',
                     'value' => function (Order $model) {
-                        return $model->getStatusLabel();
+                        return "<div class=\"" . $model->getStatusCSSClass() . "\">" . $model->getStatusLabel() . "</div>";
                     }
+
                 ],
             ],
         ]); ?>

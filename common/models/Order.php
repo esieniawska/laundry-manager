@@ -43,6 +43,23 @@ class Order extends \yii\db\ActiveRecord {
         return 'order';
     }
 
+    public static function getStatusToClassMap() {
+        return [
+            Order::STATUS_WAITING_AT_CUSTOMER => 'label-waiting-customer',
+            Order::STATUS_TRAVEL_TO_LAUNDRY => 'label-travel-laundry',
+            Order::STATUS_WAITING_FOR_WASH => 'label-waiting-wash',
+            Order::STATUS_WASHING => 'label-wash',
+            Order::STATUS_WAITING_FOR_RETURN_TO_CUSTOMER => 'label-waiting-return',
+            Order::STATUS_TRAVEL_TO_CUSTOMER => 'label-travel-customer',
+            Order::STATUS_RECEIVING_BY_CUSTOMER => 'label-received',
+        ];
+    }
+    public function getStatusCSSClass() {
+        $statusClassMap = self::getStatusToClassMap();
+        return isset($statusClassMap[$this->status]) ? $statusClassMap[$this->status] : 'label-info';
+    }
+
+
     public static function getStatusLabels() {
         return [
             self::STATUS_WAITING_AT_CUSTOMER => "Oczekiwanie na odbiór od klienta",
@@ -59,7 +76,6 @@ class Order extends \yii\db\ActiveRecord {
         $status = self::getStatusLabels();
         return $status[$this->status];
     }
-
 
 
     public function behaviors() {
@@ -104,7 +120,7 @@ class Order extends \yii\db\ActiveRecord {
             'id' => 'ID',
             'user_id' => 'Użytkownik',
             'created_at' => 'Utworzono',
-            'updated_by'=>'Aktualizowane przez',
+            'updated_by' => 'Aktualizowane przez',
             'updated_at' => 'Aktualizowano',
             'address' => 'Adres',
         ];
@@ -120,9 +136,10 @@ class Order extends \yii\db\ActiveRecord {
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getUpdatedBy(){
-        return $this->hasOne(User::className(),['id'=>'updated_by']);
+    public function getUpdatedBy() {
+        return $this->hasOne(User::className(), ['id' => 'updated_by']);
     }
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -141,41 +158,40 @@ class Order extends \yii\db\ActiveRecord {
         return $this;
     }
 
-    public function setStatus($orderId, $status){
+    public function setStatus($orderId, $status) {
         $order = Order::findOne($orderId);
         $order->status = $status;
         $order->save();
     }
 
-    public static function setTravelToLaundryStatus($id){
-        Order::setStatus($id, self::STATUS_TRAVEL_TO_LAUNDRY );
+    public static function setTravelToLaundryStatus($id) {
+        Order::setStatus($id, self::STATUS_TRAVEL_TO_LAUNDRY);
     }
 
-    public static function setWaitingForWashStatus($id){
-        Order::setStatus($id, self::STATUS_WAITING_FOR_WASH );
+    public static function setWaitingForWashStatus($id) {
+        Order::setStatus($id, self::STATUS_WAITING_FOR_WASH);
     }
 
-    public static function setWashingStatus($id){
-        Order::setStatus($id, self::STATUS_WASHING );
+    public static function setWashingStatus($id) {
+        Order::setStatus($id, self::STATUS_WASHING);
     }
 
-    public static function setWaitingForReturnToCustomerStatus($id){
-        Order::setStatus($id, self::STATUS_WAITING_FOR_RETURN_TO_CUSTOMER );
+    public static function setWaitingForReturnToCustomerStatus($id) {
+        Order::setStatus($id, self::STATUS_WAITING_FOR_RETURN_TO_CUSTOMER);
     }
 
-    public static function setTravelToCustomerStatus($id){
-        Order::setStatus($id, self::STATUS_TRAVEL_TO_CUSTOMER );
+    public static function setTravelToCustomerStatus($id) {
+        Order::setStatus($id, self::STATUS_TRAVEL_TO_CUSTOMER);
     }
 
-    public static function setReceivingByCustomerStatus($id){
-        Order::setStatus($id, self::STATUS_RECEIVING_BY_CUSTOMER );
+    public static function setReceivingByCustomerStatus($id) {
+        Order::setStatus($id, self::STATUS_RECEIVING_BY_CUSTOMER);
     }
 
     /**
      * @return OrderQuery
      */
-    public static function find()
-    {
+    public static function find() {
         return new OrderQuery(get_called_class());
     }
 
